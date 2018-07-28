@@ -20,11 +20,12 @@ class FileStorage:
         return self.__objects
 
     def delete(self, obj=None):
-        """ delete an object from the dictionary
+        '''
+            Delete an object from the dictionary
 
-        Args:
-            obj (object) object in the dictionary
-        """
+            Args:
+                obj (object) object in the dictionary
+        '''
         if obj:
             try:
                 del FileStorage.__objects[str(obj.__class__.__name__)

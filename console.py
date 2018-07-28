@@ -16,12 +16,12 @@ from models.review import Review
 
 
 def isfloat(x):
-    """ check if x is a float
+    '''
+        Check if x is a float
 
-    Returns:
-        bool: True if successful, False otherwise.
-
-    """
+        Returns:
+            bool: True if successful, False otherwise.
+    '''
     try:
         a = float(x)
     except ValueError:
@@ -31,12 +31,12 @@ def isfloat(x):
 
 
 def isint(x):
-    """ check if x is an int
+    '''
+        Check if x is an int
 
-    Returns:
-        bool: True if successful, False otherwise.
-
-    """
+        Returns:
+            bool: True if successful, False otherwise.
+    '''
     try:
         a = float(x)
         b = int(a)
@@ -73,15 +73,15 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def is_valid_arg(self, arg):
-        """checks if argument is valid
+        '''
+            Checks if argument is valid
 
-        Args:
-           arg (str): the argument
+            Args:
+               arg (str): the argument
 
-        Returns:
-            bool: True if successful, False otherwise.
-
-        """
+            Returns:
+                bool: True if successful, False otherwise.
+        '''
         if "=" in arg:
             return True
         else:
