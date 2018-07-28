@@ -28,12 +28,11 @@ class FileStorage:
         '''
         if obj:
             try:
-                del FileStorage.__objects[str(obj.__class__.__name__)
-                                          + "."
-                                          + str(obj.id)]
+                del FileStorage.__objects[str(obj.__class__.__name__) +
+                                          "." +
+                                          str(obj.id)]
             except KeyError:
                 pass
-
 
     def new(self, obj):
         '''

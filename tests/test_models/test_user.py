@@ -2,6 +2,7 @@
 '''
     Contains the TestUserDocs classes
 '''
+import os
 from datetime import datetime
 import inspect
 import models
@@ -10,6 +11,7 @@ from models.base_model import BaseModel
 import pep8
 import unittest
 User = user.User
+storage_t = os.getenv("HBNB_TYPE_STORAGE")
 
 
 class TestUserDocs(unittest.TestCase):
@@ -59,16 +61,6 @@ class TestUserDocs(unittest.TestCase):
         self.assertTrue(len(User.__doc__) >= 1,
                         "User class needs a docstring")
 
-    def test_user_func_docstrings(self):
-        '''
-            Test for the presence of docstrings in User methods
-        '''
-        for func in self.user_f:
-            self.assertIsNot(func[1].__doc__, None,
-                             "{:s} method needs a docstring".format(func[0]))
-            self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
-
 
 class TestUser(unittest.TestCase):
     '''
@@ -90,10 +82,10 @@ class TestUser(unittest.TestCase):
         '''
         user = User()
         self.assertTrue(hasattr(user, "email"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(user.email, None)
         else:
-            self.assertEqual(user.email, "")
+            self.assertEqual(user.email, None)
 
     def test_password_attr(self):
         '''
@@ -101,10 +93,10 @@ class TestUser(unittest.TestCase):
         '''
         user = User()
         self.assertTrue(hasattr(user, "password"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(user.password, None)
         else:
-            self.assertEqual(user.password, "")
+            self.assertEqual(user.password, None)
 
     def test_first_name_attr(self):
         '''
@@ -112,10 +104,10 @@ class TestUser(unittest.TestCase):
         '''
         user = User()
         self.assertTrue(hasattr(user, "first_name"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(user.first_name, None)
         else:
-            self.assertEqual(user.first_name, "")
+            self.assertEqual(user.first_name, None)
 
     def test_last_name_attr(self):
         '''
@@ -123,10 +115,10 @@ class TestUser(unittest.TestCase):
         '''
         user = User()
         self.assertTrue(hasattr(user, "last_name"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(user.last_name, None)
         else:
-            self.assertEqual(user.last_name, "")
+            self.assertEqual(user.last_name, None)
 
     def test_to_dict_creates_dict(self):
         '''

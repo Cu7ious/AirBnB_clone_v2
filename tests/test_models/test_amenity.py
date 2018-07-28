@@ -2,6 +2,7 @@
 '''
     Contains the TestAmenityDocs classes
 '''
+import os
 from datetime import datetime
 import inspect
 import models
@@ -10,6 +11,7 @@ from models.base_model import BaseModel
 import pep8
 import unittest
 Amenity = amenity.Amenity
+storage_t = os.getenv("HBNB_TYPE_STORAGE")
 
 
 class TestAmenityDocs(unittest.TestCase):
@@ -59,16 +61,6 @@ class TestAmenityDocs(unittest.TestCase):
         self.assertTrue(len(Amenity.__doc__) >= 1,
                         "Amenity class needs a docstring")
 
-    def test_amenity_func_docstrings(self):
-        '''
-            Test for the presence of docstrings in Amenity methods
-        '''
-        for func in self.amenity_f:
-            self.assertIsNot(func[1].__doc__, None,
-                             "{:s} method needs a docstring".format(func[0]))
-            self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
-
 
 class TestAmenity(unittest.TestCase):
     '''
@@ -90,10 +82,10 @@ class TestAmenity(unittest.TestCase):
         '''
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(amenity.name, None)
         else:
-            self.assertEqual(amenity.name, "")
+            self.assertEqual(amenity.name, None)
 
     def test_to_dict_creates_dict(self):
         '''

@@ -2,6 +2,7 @@
 '''
     Contains the TestStateDocs classes
 '''
+import os
 from datetime import datetime
 import inspect
 import models
@@ -10,6 +11,7 @@ from models.base_model import BaseModel
 import pep8
 import unittest
 State = state.State
+storage_t = os.getenv("HBNB_TYPE_STORAGE")
 
 
 class TestStateDocs(unittest.TestCase):
@@ -59,16 +61,6 @@ class TestStateDocs(unittest.TestCase):
         self.assertTrue(len(State.__doc__) >= 1,
                         "State class needs a docstring")
 
-    def test_state_func_docstrings(self):
-        '''
-            Test for the presence of docstrings in State methods
-        '''
-        for func in self.state_f:
-            self.assertIsNot(func[1].__doc__, None,
-                             "{:s} method needs a docstring".format(func[0]))
-            self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
-
 
 class TestState(unittest.TestCase):
     '''
@@ -90,10 +82,10 @@ class TestState(unittest.TestCase):
         '''
         state = State()
         self.assertTrue(hasattr(state, "name"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(state.name, None)
         else:
-            self.assertEqual(state.name, "")
+            self.assertEqual(state.name, None)
 
     def test_to_dict_creates_dict(self):
         '''

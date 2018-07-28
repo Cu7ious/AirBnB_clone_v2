@@ -2,6 +2,7 @@
 '''
     Contains the TestReviewDocs classes
 '''
+import os
 from datetime import datetime
 import inspect
 import models
@@ -10,6 +11,7 @@ from models.base_model import BaseModel
 import pep8
 import unittest
 Review = review.Review
+storage_t = os.getenv("HBNB_TYPE_STORAGE")
 
 
 class TestReviewDocs(unittest.TestCase):
@@ -59,16 +61,6 @@ class TestReviewDocs(unittest.TestCase):
         self.assertTrue(len(Review.__doc__) >= 1,
                         "Review class needs a docstring")
 
-    def test_review_func_docstrings(self):
-        '''
-            Test for the presence of docstrings in Review methods
-        '''
-        for func in self.review_f:
-            self.assertIsNot(func[1].__doc__, None,
-                             "{:s} method needs a docstring".format(func[0]))
-            self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
-
 
 class TestReview(unittest.TestCase):
     '''
@@ -90,10 +82,10 @@ class TestReview(unittest.TestCase):
         '''
         review = Review()
         self.assertTrue(hasattr(review, "place_id"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(review.place_id, None)
         else:
-            self.assertEqual(review.place_id, "")
+            self.assertEqual(review.place_id, None)
 
     def test_user_id_attr(self):
         '''
@@ -101,10 +93,10 @@ class TestReview(unittest.TestCase):
         '''
         review = Review()
         self.assertTrue(hasattr(review, "user_id"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(review.user_id, None)
         else:
-            self.assertEqual(review.user_id, "")
+            self.assertEqual(review.user_id, None)
 
     def test_text_attr(self):
         '''
@@ -112,10 +104,10 @@ class TestReview(unittest.TestCase):
         '''
         review = Review()
         self.assertTrue(hasattr(review, "text"))
-        if models.storage_t == 'db':
+        if storage_t == "db":
             self.assertEqual(review.text, None)
         else:
-            self.assertEqual(review.text, "")
+            self.assertEqual(review.text, None)
 
     def test_to_dict_creates_dict(self):
         '''

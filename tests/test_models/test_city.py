@@ -2,7 +2,7 @@
 '''
     Contains the TestCityDocs classes
 '''
-
+import os
 from datetime import datetime
 import inspect
 import models
@@ -60,16 +60,6 @@ class TestCityDocs(unittest.TestCase):
         self.assertTrue(len(City.__doc__) >= 1,
                         "City class needs a docstring")
 
-    def test_city_func_docstrings(self):
-        '''
-            Test for the presence of docstrings in City methods
-        '''
-        for func in self.city_f:
-            self.assertIsNot(func[1].__doc__, None,
-                             "{:s} method needs a docstring".format(func[0]))
-            self.assertTrue(len(func[1].__doc__) >= 1,
-                            "{:s} method needs a docstring".format(func[0]))
-
 
 class TestCity(unittest.TestCase):
     '''
@@ -91,10 +81,10 @@ class TestCity(unittest.TestCase):
         '''
         city = City()
         self.assertTrue(hasattr(city, "name"))
-        if models.storage_t == 'db':
+        if os.getenv("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(city.name, None)
         else:
-            self.assertEqual(city.name, "")
+            self.assertEqual(city.name, None)
 
     def test_state_id_attr(self):
         '''
@@ -102,10 +92,10 @@ class TestCity(unittest.TestCase):
         '''
         city = City()
         self.assertTrue(hasattr(city, "state_id"))
-        if models.storage_t == 'db':
+        if os.getenv("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(city.state_id, None)
         else:
-            self.assertEqual(city.state_id, "")
+            self.assertEqual(city.state_id, None)
 
     def test_to_dict_creates_dict(self):
         '''
