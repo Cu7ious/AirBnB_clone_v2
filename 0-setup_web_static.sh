@@ -19,7 +19,8 @@
 #    Update the Nginx configuration to serve the content of
 #        /data/web_static/current/ to hbnb_static
 #        ex: https://mydomainname.tech/hbnb_static
-sudo apt-get update && sudo apt-get install nginx
+sudo apt-get update
+sudo apt-get install -y nginx
 
 sudo mkdir /data
 sudo chown -R ubuntu:ubuntu /data
@@ -28,15 +29,11 @@ mkdir -p /data/web_static/shared/
 mkdir -p /data/web_static/releases/test/
 
 read -r -d '' HTML <<- EOM
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>NginX Test</title>
   </head>
   <body>
-    <h1>NginX Test</h1>
-    <p>If you can read this, your NginX is runnining
-	and it has been properly configured.</p>
+    Holberton School
   </body>
 </html>
 EOM
