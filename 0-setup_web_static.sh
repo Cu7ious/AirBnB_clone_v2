@@ -3,7 +3,7 @@
 sudo apt-get update
 sudo apt-get install -y nginx
 
-sudo mkdir /data
+sudo mkdir -p /data
 sudo chown -R ubuntu:ubuntu /data
 
 mkdir -p /data/web_static/shared/
@@ -23,7 +23,7 @@ echo -e "$HTML" > /data/web_static/releases/test/index.html
 
 ln -sfn /data/web_static/releases/test/ /data/web_static/current
 
-line="\\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
+line="\\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n"
 sudo sed -i "38i $line" /etc/nginx/sites-available/default
 
 sudo service nginx restart
