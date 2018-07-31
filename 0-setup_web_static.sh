@@ -21,7 +21,8 @@ EOM
 
 echo -e "$HTML" > /data/web_static/releases/test/index.html
 
-ln -sfn /data/web_static/releases/test/ /data/web_static/current
+rm -rf /data/web_static/current
+ln -s /data/web_static/releases/test/ /data/web_static/current
 
 line="\\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n"
 sudo sed -i "38i $line" /etc/nginx/sites-available/default
