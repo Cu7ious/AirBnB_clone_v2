@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module that creates very basic Flask app
+""" Module that creates very basic Flask app.
 """
 from flask import Flask
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/", strict_slashes=False)
 def root_route():
     """ The 'root' route.
-        Sends the "Hello HBNB!" text
+        Sends the "Hello HBNB!" text.
     """
     return "Hello HBNB!"
 
@@ -16,7 +16,7 @@ def root_route():
 @app.route("/hbnb", strict_slashes=False)
 def hbnb_route():
     """ The 'hbnb' route.
-        Sends the "HBNB" text
+        Sends the "HBNB" text.
     """
     return "HBNB"
 

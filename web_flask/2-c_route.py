@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/", strict_slashes=False)
 def root_route():
     """ The 'root' route.
-        Sends the "Hello HBNB!" text
+        Sends the "Hello HBNB!" text.
     """
     return "Hello HBNB!"
 
@@ -16,7 +16,7 @@ def root_route():
 @app.route("/hbnb", strict_slashes=False)
 def hbnb_route():
     """ The 'hbnb' route.
-        Sends the "HBNB" text
+        Sends the "HBNB" text.
     """
     return "HBNB"
 
@@ -24,9 +24,9 @@ def hbnb_route():
 @app.route("/c/<text>", strict_slashes=False)
 def c_route(text):
     """ The 'c' route with the text varible subroute.
-        Sends the "C" with the complimented text
+        Sends the "C" with the complimented text.
 
-        @text: the variable subroute
+        @text: the variable subroute.
     """
     return "C" + " " + text.replace("_", " ")
 

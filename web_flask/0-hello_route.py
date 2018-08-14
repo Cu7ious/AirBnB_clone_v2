@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-""" Module that creates very basic Flask app
+""" Module that creates very basic Flask app.
 """
 from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def root_route():
-    """ The root aoute.
-        Sends the "Hello HBNB!" text
+    """ The 'root' route.
+        Sends the "Hello HBNB!" text.
     """
     return "Hello HBNB!"
 
