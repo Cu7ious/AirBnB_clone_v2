@@ -13,17 +13,19 @@ class State(BaseModel, Base):
         Implementation for the State.
     '''
     __tablename__ = "states"
-    name = Column(String(128),
-                  nullable=False)
-    cities = relationship("City", backref="state",
-                          cascade="all, delete-orphan")
 
-    @property
-    def cities(self):
-        '''
-            getter attribute cities that returns the list of City
-            instances with state_id equals to the current State.id
-        '''
-        cits = models.storage.all('City').values()
-        cits_by_state = [city for city in cits if city.state_id == self.id]
-        return cits_by_state
+    if os.getenv("HBNB_TYPE_STORAGE") != "db":
+        @property
+        def cities(self):
+            '''
+                getter attribute cities that returns the list of City
+                instances with state_id equals to the current State.id
+            '''
+            cits = models.storage.all('City').values()
+            cits_by_state = [city for city in cits if city.state_id == self.id]
+            return cits_by_state
+    else:
+        name = Column(String(128),
+                      nullable=False)
+        cities = relationship("City", backref="state",
+                              cascade="all, delete-orphan")
