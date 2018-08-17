@@ -3,5 +3,6 @@ __pycache__/
 
 .env
 *.json
+7-dump.sql
 
 versions/*
