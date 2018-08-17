@@ -31,11 +31,7 @@ city_2_1.save()
  Verification
 """
 print("")
-print("Type State:", type(State))
 all_states = storage.all(State)
-# print(all_states)
 for state_id, state in all_states.items():
-    print("1st loop\n")
     for city in state.cities:
-        print("2nd loop\n")
         print("Find the city {} in the state {}".format(city, state))

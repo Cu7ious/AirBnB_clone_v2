@@ -17,17 +17,12 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        # print("cls:", cls)
         if cls is None:
-            print("if:")
             return self.__objects
         else:
-            print("else:")
             classes = {}
             for key, val in self.__objects.items():
-                print("value:", val.__class__)
-                if isinstance(val, cls):
-                    print("cls type:", type(cls))
+                if type(val) == cls:
                     classes[key] = val
 
             return classes
