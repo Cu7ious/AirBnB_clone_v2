@@ -22,9 +22,14 @@ class State(BaseModel, Base):
                 getter attribute cities that returns the list of City
                 instances with state_id equals to the current State.id
             '''
-            cits = models.storage.all('City').values()
-            cits_by_state = [city for city in cits if city.state_id == self.id]
-            return cits_by_state
+            cities = models.storage.all('City').values()
+            cities_by_state = []
+
+            for city in cities:
+                if city.state_id == self.id:
+                    cities_by_state.append(city)
+
+            return cities_by_state
     else:
         name = Column(String(128),
                       nullable=False)
