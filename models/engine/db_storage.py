@@ -40,23 +40,29 @@ class DBStorage():
 
     def all(self, cls=None):
         '''
-            all method
+            The 'all' method returns all data objects
+
+            Attributes:
+                @self: referense to a current instance
+                @cls: the instance of a class
         '''
-        ret_dict = {}
+        results = {}
 
         if not cls:
             for classname in available_objects:
                 for item in self.__session.query(classname).all():
                     key = item.__class__.__name__ + "." + item.id
                     val = item
-                    ret_dict[key] = val
+                    results[key] = val
         else:
-            for item in self.__session.query(eval(cls)).all():
+            # print("\neval:", eval(cls), "\n")
+            # print("\neval:", cls.__dict__, "\n")
+            for item in self.__session.query(cls).all():
                 key = item.__class__.__name__ + "." + item.id
                 val = item
-                ret_dict[key] = val
+                results[key] = val
 
-        return ret_dict
+        return results
 
     def new(self, obj):
         '''
