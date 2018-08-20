@@ -55,8 +55,6 @@ class DBStorage():
                     val = item
                     results[key] = val
         else:
-            # print("\neval:", eval(cls), "\n")
-            # print("\neval:", cls.__dict__, "\n")
             for item in self.__session.query(cls).all():
                 key = item.__class__.__name__ + "." + item.id
                 val = item
